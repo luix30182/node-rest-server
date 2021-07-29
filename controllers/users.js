@@ -50,10 +50,14 @@ const patchUsers = (req, res) => {
 	});
 };
 
-const deleteUsers = (req, res) => {
+const deleteUsers = async (req, res) => {
+	const { id } = req.params;
+
+	// const user = await User.findByIdAndDelete(id);
+	const user = await User.findByIdAndUpdate(id, { status: false });
+
 	res.json({
-		ok: true,
-		msg: 'delete api controller',
+		user,
 	});
 };
 
